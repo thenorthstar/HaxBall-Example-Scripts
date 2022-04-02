@@ -25,7 +25,7 @@ var GetVotesAndAnnounceResults_Timeout_2;
 var MapStartWaitTimeout = 3000; //In milliseconds
 var VoteTimeout = 15000; //In milliseconds
 
-var room = HBInit({roomName:"TEST",noPlayer:true,public:true,maxPlayers:30});
+var room = HBInit({roomName:"Map Vote",noPlayer:true,public:true,maxPlayers:30});
 
 function getVotesAndAnnounceResults(){
     if(VoteSession == false){
