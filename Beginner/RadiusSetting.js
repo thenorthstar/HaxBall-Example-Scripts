@@ -1,4 +1,4 @@
-var room = HBInit({roomName: "Room", noPlayer:true, public:true, maxPlayers:2});
+var room = HBInit({roomName: "Radius Setting", noPlayer:true, public:true, maxPlayers:2});
 
 room.onPlayerJoin = function(player){
     console.log(player.name + " (Auth: (" + player.auth + ")) has joined.");
