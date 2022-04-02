@@ -1,7 +1,7 @@
 var freeze = []; //Holds the name of the frozen players.
 var playerInformations = []; //Holds players names, ID's and positions (undefined if not frozen).
 
-var room = HBInit({ roomName: "Test", noPlayer: true, public: false, maxPlayers: 2});
+var room = HBInit({ roomName: "Player Freeze", noPlayer: true, public: false, maxPlayers: 2});
 
 function createPlayer(player){ //Create player informations, it will be used in the room.onPlayerJoin() event.
     playerInformations[playerInformations.length] = {
