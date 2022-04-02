@@ -1,6 +1,8 @@
 var playerList = {};
 var gameTimeLimit = 60;
 
+var room = HBInit({roomName:"Rank System",playerName:"",noPlayer:true,public:true,maxPlayers:12});
+
 function increaseTime(){
     var players = room.getPlayerList().filter(p => room.getPlayerDiscProperties(p.id) != null);
     players.forEach(p => playerList[p.name].gameTime += 1/60);
