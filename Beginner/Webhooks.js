@@ -1,4 +1,4 @@
-var room = HBInit({ roomName: "TEST", noPlayer:true, public:true, maxPlayers: 30});
+var room = HBInit({ roomName: "Webhooks", noPlayer:true, public:true, maxPlayers: 30});
 
 function sendAnnouncementToDiscord(message) {
 
