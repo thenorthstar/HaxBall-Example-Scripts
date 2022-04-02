@@ -5,7 +5,7 @@ var teams = ["spectators","red","blue"];
 var templist = [];
 var timeLimit = 300; //In seconds
 
-var room = HBInit({roomName:"TEST",noPlayer:true,public:true,maxPlayers:20});
+var room = HBInit({roomName:"Login",noPlayer:true,public:true,maxPlayers:20});
 
 function increaseInGameTime(){
     room.getPlayerList().filter(p => p.team != 0).forEach(p => {
