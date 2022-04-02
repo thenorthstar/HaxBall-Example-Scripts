@@ -2,7 +2,7 @@ var banList = [];
 var names = [];
 var ids = [];
 
-var room = HBInit({roomName:"TEST",noPlayer:true,public:true,maxPlayers:12});
+var room = HBInit({roomName:"Clear Ban",noPlayer:true,public:true,maxPlayers:12});
 
 function GetNameById(id){
     if(!isNaN(id)){
