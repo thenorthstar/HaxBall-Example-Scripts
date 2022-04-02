@@ -11,7 +11,7 @@ var radiusBall = 10; //Classic map puck radius, you can change it with respect t
 var radiusPlayer = 15; //The original player radius, you can change it with respect to the player radius of your map.
 var triggerDistance = radiusBall + radiusPlayer + 0.01; //Player ball distance tolerance. You can increase it for less sensitivity.
 
-var room = HBInit({roomName:"TEST",playerName:"",noPlayer:true,public:true,maxPlayers:12});
+var room = HBInit({roomName:"Power Shot",playerName:"",noPlayer:true,public:true,maxPlayers:12});
 
 function getLastTouchTheBall(){
     var ballPosition = room.getBallPosition();
