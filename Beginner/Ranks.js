@@ -4,7 +4,7 @@ var playerList = {};
 var basePoints = [0,1000,2500,5000,10000];
 var ranks = ["Beginner","Amateur","Intermediate","Professional","Upperly Professional"];
 
-var room = HBInit({roomName:"TEST",noPlayer:true,public:true,maxPlayers:12});
+var room = HBInit({roomName:"Ranks",noPlayer:true,public:true,maxPlayers:12});
 
 function checkPlayerRank(player){ //You can invoke this function in the functions in which you updated the statistics. There's no problem because of there are the same amount of ranks and base points.
     for(var r=0; r<ranks.length; r++){
