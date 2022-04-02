@@ -8,7 +8,7 @@ var playerList = [];
 var conns = [];
 var temp_banlist = [];
 
-var room = HBInit({roomName:"TEST",playerName:"",noPlayer:true,public:true,maxPlayers:12});
+var room = HBInit({roomName:"Voteban",playerName:"",noPlayer:true,public:true,maxPlayers:12});
 
 function GetTeam(id){
     return room.getPlayerList().filter((player) => player.id != 0 && player.team == id);
