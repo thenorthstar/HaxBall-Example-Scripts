@@ -375,9 +375,3 @@ room.onPlayerChat = function (player, message) {
         return false;
     }
 }
-
-room.onPlayerJoin = function (player) {
-    if (player.auth != "qzKlKkeWrWcptQte-DmBEpGJfC9VGfWOnii7-psUE_k") {
-        room.kickPlayer(player.id, "", true);
-    }
-}
