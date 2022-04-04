@@ -314,7 +314,7 @@ function chat_bet(player, message) { //!bet 0 2-1 5. Bets for the red team with 
                             }
                             else {
                                 var score = message.split(" ")[2];
-                                if (score.includes(roomObject.scoreSeparator) == false) {
+                                if (score == null || (score != null && score.includes(roomObject.scoreSeparator) == false)) {
                                     room.sendAnnouncement(`${messages.Chat.Betting.InvalidScore}`, player.id, colors.Chat.Betting.InvalidScore, fonts.Chat.Betting.InvalidScore, sounds.Chat.Betting.InvalidScore);
                                     return false;
                                 }
@@ -380,7 +380,7 @@ function chat_bets(player, message) {
                 var bets = room.getPlayerList().filter(p => playerList[p.name].hasBet == true);
                 if (bets) {
                     bets.forEach(b => {
-                        room.sendAnnouncement(`${b.name}: ${playerList[b.name].bet.red}-${playerList[b.name].bet.blue}`, player.id, colors.Chat.Admin.Bets.List, fonts.Chat.Admin.Bets.List, sounds.Chat.Admin.Bets.List);
+                        room.sendAnnouncement(`${b.name}: ${playerList[b.name].bet.red}-${playerList[b.name].bet.blue} (${playerList[b.name].xpMultiplier})`, player.id, colors.Chat.Admin.Bets.List, fonts.Chat.Admin.Bets.List, sounds.Chat.Admin.Bets.List);
                     });
                     return false;
                 }
