@@ -22,6 +22,7 @@ Here, usually easily-made ones take place.
 * Slow mode script for keeping clean the chat section: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/SlowMode.js
 * A script to keep flooders away: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Spam_Mute.js
 * A script for logging the data in your room to discord: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Webhooks.js
+* Simple betting system for HaxBall players: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/XPSystem.js
 
 ### Intermediate
 Here, average weighted scripts take place.
