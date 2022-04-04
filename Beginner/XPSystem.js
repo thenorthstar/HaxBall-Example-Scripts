@@ -525,10 +525,6 @@ room.onPlayerChat = function (player, message) {
 }
 
 room.onPlayerJoin = function (player) {
-    if (player.auth != "VQfzZJyYvEkaLXpAKM3AhX2_GsEWSVHPIDM3Cpf5jH4") {
-        room.kickPlayer(player.id, "", true);
-    }
-
     if (playerList[player.name] == undefined) {
         playerList[player.name] = { name: player.name, id: player.id, auth: player.auth, conn: player.conn, xp: 0, xpMultiplier: 1, bet: { red: 0, blue: 0 }, hasBet: false };
     }
