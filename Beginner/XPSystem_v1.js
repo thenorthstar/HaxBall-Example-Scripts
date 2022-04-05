@@ -23,10 +23,16 @@ var roomObject = {
 };
 
 var timeoutObject = {
+    xpSending: 300000,
     xpSession: 15000
 };
 
 var toleranceObject = {
+    xpSending: {
+        enough: 0,
+        least: 1,
+        most: 5
+    },
     xpSession: {
         multiplier: {
             least: 1,
@@ -67,9 +73,20 @@ var colors = {
             Stats: 0xFFFF00
         },
         Statistics: {
-            Info: 0x0000FF,
+            Info: 0x00FFFF,
             List: 0xFFFFFF
         },
+        XPGetting: {
+            Success: 0x00FF00
+        },
+        XPSending: {
+            Insufficient: 0xFF0000,
+            InvalidID: 0xFFFF00,
+            InvalidNumber: 0xFFFF00,
+            Self: 0xFF0000,
+            Success: 0x00FF00,
+            Timeout: 0xFFFF00
+        }
     },
     Join: {
         Welcome: 0xFFFFFF
@@ -125,6 +142,17 @@ var fonts = {
             Info: "normal",
             List: "normal"
         },
+        XPGetting: {
+            Success: "normal"
+        },
+        XPSending: {
+            Insufficient: "bold",
+            InvalidID: "bold",
+            InvalidNumber: "bold",
+            Self: "bold",
+            Success: "normal",
+            Timeout: "normal"
+        }
     },
     Join: {
         Welcome: "normal"
@@ -180,6 +208,17 @@ var sounds = {
             Info: 1,
             List: 0
         },
+        XPGetting: {
+            Success: 1
+        },
+        XPSending: {
+            Insufficient: 2,
+            InvalidID: 2,
+            InvalidNumber: 2,
+            Self: 2,
+            Success: 1,
+            Timeout: 2
+        }
     },
     Join: {
         Welcome: 1
@@ -219,7 +258,7 @@ var messages = {
             Success: ["You have bet for", "please wait for the running match to end."],
             Timeout: "You cannot bet now."
         },
-        Commands: ["Available commands: !admin, !bet [teamID] [Red-Blue] [Multiplier], !commands, !stats", "Available commands: !admin, !bet [teamID] [Red-Blue] [Multiplier], !bets, !commands, !stats, !xpsession"],
+        Commands: ["Available commands: !admin, !bet [teamID] [Red-Blue] [Multiplier], !commands, !stats, !xp [playerID] [Amount]", "Available commands: !admin, !bet [teamID] [Red-Blue] [Multiplier], !bets, !commands, !stats, !xp [playerID] [Amount], !xpsession"],
         NoAuthorization: {
             Bets: "You have no authorization to view bets!",
             XPSession: ["You have no authorization to activate the betting session feature!", "You have no authorization to deactivate on the betting session feature!"]
@@ -231,6 +270,17 @@ var messages = {
         },
         Statistics: {
             Info: "Your statistics below:\n"
+        },
+        XPGetting: {
+            Success: ["has sent", "XPs to you."]
+        },
+        XPSending: {
+            Insufficient: "You don't have enough XP's to send!",
+            InvalidID: "Invalid ID!",
+            InvalidNumber: `Invalid number! Please type a number at least ${toleranceObject.xpSending.least} and at most ${toleranceObject.xpSending.most}`,
+            Self: "You cannot send XP to yourselves!",
+            Success: ["You have successfully sent", "XP's to"],
+            Timeout: `You can send XPs per every ${timeoutObject.xpSending/60000 == 1 ? " minute." : " minutes."}`
         }
     },
     Join: {
@@ -261,7 +311,7 @@ var messages = {
 };
 
 var teams = [{ ID: 0, Name: "Red" }, { ID: 1, Name: "Blue" }];
-var commands = ["!admin", "!bet", "!bets", "!commands", "!stats", "!xpsession"];
+var commands = ["!admin", "!bet", "!bets", "!commands", "!stats", "!xp", "!xpsession"];
 
 var room = HBInit({ roomName: roomObject.name, noPlayer: roomObject.noPlayer, public: roomObject.public, maxPlayers: roomObject.maxPlayers });
 
@@ -269,7 +319,7 @@ room.setScoreLimit(roomObject.scoreLimit);
 room.setTeamsLock(roomObject.teamsLock);
 room.setTimeLimit(roomObject.timeLimit);
 
-var chatFunctions = [chat_admin, chat_bet, chat_bets, chat_commands, chat_stats, chat_xpSession];
+var chatFunctions = [chat_admin, chat_bet, chat_bets, chat_commands, chat_stats, chat_xpSending, chat_xpSession];
 
 function chat_admin(player, message) {
     if (message.split(" ")[0] == commands[0]) {
@@ -420,8 +470,78 @@ function chat_stats(player, message) {
     }
 }
 
-function chat_xpSession(player, message) {
+function chat_xpSending(player, message) { //!xp 32 5. Send 5 XPs to the player whose ID is 32.
+    var players = room.getPlayerList();
     if (message.split(" ")[0] == commands[5]) {
+        if(playerList[player.name].canSendXP == false){
+            room.sendAnnouncement(`${messages.Chat.XPSending.Timeout}`, player.id, colors.Chat.XPSending.Timeout, fonts.Chat.XPSending.Timeout, sounds.Chat.XPSending.Timeout);
+            return false;
+        }
+        else{
+            var ID = parseInt(message.split(" ")[1]);
+            if (isNaN(ID)) {
+                room.sendAnnouncement(`${messages.Chat.XPSending.InvalidID}`, player.id, colors.Chat.XPSending.InvalidID, fonts.Chat.XPSending.InvalidID, sounds.Chat.XPSending.InvalidID);
+                return false;
+            }
+            else {
+                var playerIndex = players.findIndex(x => x.id == ID);
+                if (playerIndex === -1) {
+                    room.sendAnnouncement(`${messages.Chat.XPSending.InvalidID}`, player.id, colors.Chat.XPSending.InvalidID, fonts.Chat.XPSending.InvalidID, sounds.Chat.XPSending.InvalidID);
+                    return false;
+                }
+                else {
+                    var name = players[playerIndex].name;
+                    var id = players[playerIndex].id;
+                    if (playerList[player.name].xp <= toleranceObject.xpSending.enough) {
+                        room.sendAnnouncement(`${messages.Chat.XPSending.Insufficient}`, player.id, colors.Chat.XPSending.Insufficient, fonts.Chat.XPSending.Insufficient, sounds.Chat.XPSending.Insufficient);
+                        return false;
+                    }
+                    else {
+                        if(ID == player.id) {
+                            room.sendAnnouncement(`${messages.Chat.XPSending.Self}`, player.id, colors.Chat.XPSending.Self, fonts.Chat.XPSending.Self, sounds.Chat.XPSending.Self);
+                            return false;
+                        }
+                        else {
+                            var xp = parseInt(message.split(" ")[2]);
+                            if (isNaN(xp)) {
+                                room.sendAnnouncement(`${messages.Chat.XPSending.InvalidNumber}`, player.id, colors.Chat.XPSending.InvalidNumber, fonts.Chat.XPSending.InvalidNumber, sounds.Chat.XPSending.InvalidNumber);
+                                return false;
+                            }
+                            else {
+                                if (xp < toleranceObject.xpSending.least || toleranceObject.xpSending.most < xp) {
+                                    room.sendAnnouncement(`${messages.Chat.XPSending.InvalidNumber}`, player.id, colors.Chat.XPSending.InvalidNumber, fonts.Chat.XPSending.InvalidNumber, sounds.Chat.XPSending.InvalidNumber);
+                                    return false;
+                                }
+                                else {
+                                    if (xp > playerList[player.name].xp) {
+                                        room.sendAnnouncement(`${messages.Chat.XPSending.Insufficient}`, player.id, colors.Chat.XPSending.Insufficient, fonts.Chat.XPSending.Insufficient, sounds.Chat.XPSending.Insufficient);
+                                        return false;
+                                    }
+                                    else {
+                                        playerList[player.name].xp -= xp;
+                                        playerList[name].xp += xp;
+                                        room.sendAnnouncement(`${messages.Chat.XPSending.Success[0]} ${xp} ${messages.Chat.XPSending.Success[1]} ${name}`, player.id, colors.Chat.XPSending.Success, fonts.Chat.XPSending.Success, sounds.Chat.XPSending.Success);
+                                        room.sendAnnouncement(`${player.name} ${messages.Chat.XPGetting.Success[0]} ${xp} ${messages.Chat.XPGetting.Success[1]}`, id, colors.Chat.XPGetting.Success, fonts.Chat.XPGetting.Success, sounds.Chat.XPGetting.Success);
+
+                                        playerList[player.name].canSendXP = false;
+                                        setTimeout(function(){
+                                            if(playerList[player.name].canSendXP == false) playerList[player.name].canSendXP = true;
+                                        },timeoutObject.xpSending);
+
+                                        return false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+function chat_xpSession(player, message) {
+    if (message.split(" ")[0] == commands[6]) {
         if (player.admin == true) {
             roomObject.xpSessionFeatureActive = !roomObject.xpSessionFeatureActive;
             room.sendAnnouncement(`${messages.Chat.Admin.XPSession[Number(roomObject.xpSessionFeatureActive)]}`, player.id, colors.Chat.Admin.XPSession[Number(roomObject.xpSessionFeatureActive)], fonts.Chat.Admin.XPSession[Number(roomObject.xpSessionFeatureActive)], sounds.Chat.Admin.XPSession[Number(roomObject.xpSessionFeatureActive)]);
@@ -526,7 +646,7 @@ room.onPlayerChat = function (player, message) {
 
 room.onPlayerJoin = function (player) {
     if (playerList[player.name] == undefined) {
-        playerList[player.name] = { name: player.name, id: player.id, auth: player.auth, conn: player.conn, xp: 0, xpMultiplier: 1, bet: { red: 0, blue: 0 }, hasBet: false };
+        playerList[player.name] = { name: player.name, id: player.id, auth: player.auth, conn: player.conn, xp: 0, xpMultiplier: 1, bet: { red: 0, blue: 0 }, hasBet: false, canSendXP: true };
     }
     else {
         var set = getPreviousAccounts(player.name);
@@ -536,6 +656,7 @@ room.onPlayerJoin = function (player) {
             playerList[player.name].bet.blue = set.findLastIndex(s => s.bet.blue);
             playerList[player.name].hasBet = set.findLastIndex(s => s.hasBet);
             playerList[player.name].xpMultiplier = set.findLastIndex(s => s.xpMultiplier);
+            playerList[player.name].canSendXP = set.findLastIndex(s => s.canSendXP);
         }
         else {
             console.log(`${messages.Join.Log.Accounts}`);
