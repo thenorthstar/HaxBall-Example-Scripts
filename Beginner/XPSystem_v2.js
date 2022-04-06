@@ -491,8 +491,8 @@ function chat_xpSending(player, message) { //!xp 32 5. Send 5 XPs to the player 
                     return false;
                 }
                 else {
-                    var name = JSON.parse(localStorage.getItem("playerList"))[playerIndex].name;
-                    var id = JSON.parse(localStorage.getItem("playerList"))[playerIndex].id;
+                    var name = players[playerIndex].name;
+                    var id = players[playerIndex].id;
                     if (JSON.parse(localStorage.getItem("playerList"))[player.name].xp <= toleranceObject.xpSending.enough) {
                         room.sendAnnouncement(`${messages.Chat.XPSending.Insufficient}`, player.id, colors.Chat.XPSending.Insufficient, fonts.Chat.XPSending.Insufficient, sounds.Chat.XPSending.Insufficient);
                         return false;
