@@ -47,6 +47,7 @@ Now, let's the time to see hard-coded ones:
 
 * A script to track admin changes in the room, may seem as underrated but requires a fresh brain and patience: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/Admin.js
 * Player avatars will be available to be overrided with this script. Impossible is nothing: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/AvatarOverride.js
+* Bots also should be able to detect collisions: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/CollisionDetection.js
 * Spammers can abuse the room also by using the commands, now let's make the room great again: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/CommandAbuseDetection.js
 * MVP Script with localStorage, another underrated seeming script: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/MVP.js
 * Mute players for a certain time by command: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/Mute.js
