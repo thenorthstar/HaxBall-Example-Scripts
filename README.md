@@ -13,6 +13,7 @@ Here, usually easily-made ones take place.
 * Script for clearing the ban of a specific player: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Clearban.js
 * Script for determining if the players collide with each other during the game: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Collision.js
 * Ban players with command: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/CommandBan.js
+* Script for preventing duplicated connections from the same source: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/DuplicatedConnections.js
 * A recently popular script (to see joining history of players) which was also shared on GitHub HaxBall issues wiki: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/JoiningHistory.js
 * A funny game in which the players try to kick the target player in a certain time (it's recommended to use HaxBall All in one Tool): https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/KickGame.js (May still have some bugs, will be fixed later)
 * A lightweight zone control script ready to be enhanced: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/MarkedZone.js
