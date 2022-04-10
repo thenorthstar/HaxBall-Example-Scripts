@@ -20,7 +20,7 @@ Here, usually easily-made ones take place.
 * A funny game in which the players try to kick the target player in a certain time (it's recommended to use HaxBall All in one Tool): https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/KickGame.js (May still have some bugs, will be fixed later)
 * A lightweight zone control script ready to be enhanced: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/MarkedZone.js
 * Script for moving players from a team to another one: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/MovePlayers.js
-* A script for adjusting player radiuses after goals: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/PlayerRadiusSetting.js
+* A script for adjusting player radiuses and avatars after goals: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/PlayerRadiusAvatarSetting.js
 * An overrated seeming script to change player radius by command: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RadiusSetting.js
 * A script for seeing player statistics. Has been created after a topic on GitHub: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RankSystem.js
 * Ranks with base points: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Ranks.js
