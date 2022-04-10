@@ -4,6 +4,16 @@ var JMap = JSON.parse(Map);
 var roomObject = {
     assistingTouch: undefined,
     goal:{
+        avatarSetting:{
+            assist: {
+                ownGoal: "👟",
+                scorer: "⚽️"
+            },
+            default: null,
+            ownGoal: "❌",
+            scorer: "⚽️",
+            timeout: 5000
+        },
         radiusSetting:{
             assist: {
                 ownGoal: 25,
@@ -17,7 +27,7 @@ var roomObject = {
     lastPlayerTouched: undefined,
     lastTeamTouched: 0,
     maxPlayers: 12,
-    name: "Player Radius Adjusting After Goal",
+    name: "Player Radius and Avatar Adjusting After Goal",
     noPlayer: true,
     password: null,
     previousPlayerTouched: undefined,
@@ -93,10 +103,16 @@ var messages = {
 
 var room = HBInit({ roomName: roomObject.name, noPlayer: roomObject.noPlayer, public: roomObject.public, maxPlayers: roomObject.maxPlayers });
 
-function adjustPlayerRadius(id,radiusStart,radiusStop,timeout){
-    if(room.getPlayerDiscProperties(id) != null && room.getPlayerDiscProperties(id).radius != radiusStart) room.setPlayerDiscProperties(id,{radius: radiusStart});
+function adjustPlayerRadiusAndAvatar(id,radiusStart,radiusStop,avatarStart,avatarStop,timeout){
+    if(room.getPlayerDiscProperties(id) != null && room.getPlayerDiscProperties(id).radius != radiusStart){
+        room.setPlayerDiscProperties(id,{radius: radiusStart});
+        room.setPlayerAvatar(id,avatarStart);
+    }
     setTimeout(function(){
-        if(room.getPlayerDiscProperties(id) != null && room.getPlayerDiscProperties(id).radius != radiusStop) room.setPlayerDiscProperties(id,{radius: radiusStop});
+        if(room.getPlayerDiscProperties(id) != null && room.getPlayerDiscProperties(id).radius != radiusStop){
+            room.setPlayerDiscProperties(id,{radius: radiusStop});
+            room.setPlayerAvatar(id,avatarStop);
+        }
     },timeout);
 }
 
@@ -116,29 +132,29 @@ function announceGoals(team){
             if(assistingTouch == undefined){
                 if(lastTeamTouched == team){
                     room.sendAnnouncement(`${messages.Goal.Scorer[team-1]}: ${lastPlayerTouched.name}`,null,colors.Goal.Scorer[team-1],fonts.Goal.Scorer[team-1],sounds.Goal.Scorer[team-1]);
-                    adjustPlayerRadius(lastPlayerTouched.id,roomObject.goal.radiusSetting.scorer,JMap.playerPhysics.radius,roomObject.goal.radiusSetting.timeout);
+                    adjustPlayerRadiusAndAvatar(lastPlayerTouched.id,roomObject.goal.radiusSetting.scorer,JMap.playerPhysics.radius,roomObject.goal.avatarSetting.scorer,roomObject.goal.avatarSetting.default,roomObject.goal.radiusSetting.timeout);
                 }
                 else{
                     room.sendAnnouncement(`${messages.Goal.OwnGoal[team-1]}: ${lastPlayerTouched.name}`,null,colors.Goal.OwnGoal[team-1],fonts.Goal.OwnGoal[team-1],sounds.Goal.OwnGoal[team-1]);
-                    adjustPlayerRadius(lastPlayerTouched.id,roomObject.goal.radiusSetting.ownGoal,JMap.playerPhysics.radius,roomObject.goal.radiusSetting.timeout);
+                    adjustPlayerRadiusAndAvatar(lastPlayerTouched.id,roomObject.goal.radiusSetting.ownGoal,JMap.playerPhysics.radius,roomObject.goal.avatarSetting.ownGoal,roomObject.goal.avatarSetting.default,roomObject.goal.radiusSetting.timeout);
                 }
             }
             else{
                 if(lastTeamTouched == team){
                     room.sendAnnouncement(`${messages.Goal.Scorer[team-1]}: ${lastPlayerTouched.name} ${messages.Goal.Assist.Scorer[team-1]}: ${assistingTouch.name}`,null,colors.Goal.Assist.Scorer[team-1],fonts.Goal.Assist.Scorer[team-1],sounds.Goal.Assist.Scorer[team-1]);
-                    adjustPlayerRadius(lastPlayerTouched.id,roomObject.goal.radiusSetting.scorer,JMap.playerPhysics.radius,roomObject.goal.radiusSetting.timeout);
-                    adjustPlayerRadius(assistingTouch.id,roomObject.goal.radiusSetting.assist.scorer,JMap.playerPhysics.radius,roomObject.goal.radiusSetting.timeout);
+                    adjustPlayerRadiusAndAvatar(lastPlayerTouched.id,roomObject.goal.radiusSetting.scorer,JMap.playerPhysics.radius,roomObject.goal.avatarSetting.scorer,roomObject.goal.avatarSetting.default,roomObject.goal.radiusSetting.timeout);
+                    adjustPlayerRadiusAndAvatar(assistingTouch.id,roomObject.goal.radiusSetting.assist.scorer,JMap.playerPhysics.radius,roomObject.goal.avatarSetting.assist.scorer,roomObject.goal.avatarSetting.default,roomObject.goal.radiusSetting.timeout);
                 }
                 else{
                     if(lastPlayerTouched.team == assistingTouch.team){
                         room.sendAnnouncement(`${messages.Goal.OwnGoal[team-1]}: ${lastPlayerTouched.name} ${messages.Goal.Assist.OwnGoal[team-1]}: ${assistingTouch.name}`,null,colors.Goal.Assist.OwnGoal[team-1],fonts.Goal.Assist.OwnGoal[team-1],sounds.Goal.Assist.OwnGoal[team-1]);
-                        adjustPlayerRadius(lastPlayerTouched.id,roomObject.goal.radiusSetting.ownGoal,JMap.playerPhysics.radius,roomObject.goal.radiusSetting.timeout);
-                        adjustPlayerRadius(assistingTouch.id,roomObject.goal.radiusSetting.ownGoal,JMap.playerPhysics.radius,roomObject.goal.radiusSetting.timeout);
+                        adjustPlayerRadiusAndAvatar(lastPlayerTouched.id,roomObject.goal.radiusSetting.ownGoal,JMap.playerPhysics.radius,roomObject.goal.avatarSetting.ownGoal,roomObject.goal.avatarSetting.default,roomObject.goal.radiusSetting.timeout);
+                        adjustPlayerRadiusAndAvatar(assistingTouch.id,roomObject.goal.radiusSetting.ownGoal,JMap.playerPhysics.radius,roomObject.goal.avatarSetting.ownGoal,roomObject.goal.avatarSetting.default,roomObject.goal.radiusSetting.timeout);
                     }
                     else{
                         room.sendAnnouncement(`${messages.Goal.OwnGoal[team-1]}: ${lastPlayerTouched.name} ${messages.Goal.Assist.OwnGoal[team-1]}: ${assistingTouch.name}`,null,colors.Goal.Assist.OwnGoal[team-1],fonts.Goal.Assist.OwnGoal[team-1],sounds.Goal.Assist.OwnGoal[team-1]);
-                        adjustPlayerRadius(lastPlayerTouched.id,roomObject.goal.radiusSetting.ownGoal,JMap.playerPhysics.radius,roomObject.goal.radiusSetting.timeout);
-                        adjustPlayerRadius(assistingTouch.id,roomObject.goal.radiusSetting.assist.ownGoal,JMap.playerPhysics.radius,roomObject.goal.radiusSetting.timeout);
+                        adjustPlayerRadiusAndAvatar(lastPlayerTouched.id,roomObject.goal.radiusSetting.ownGoal,JMap.playerPhysics.radius,roomObject.goal.avatarSetting.ownGoal,roomObject.goal.avatarSetting.default,roomObject.goal.radiusSetting.timeout);
+                        adjustPlayerRadiusAndAvatar(assistingTouch.id,roomObject.goal.radiusSetting.assist.ownGoal,JMap.playerPhysics.radius,roomObject.goal.avatarSetting.assist.ownGoal,roomObject.goal.avatarSetting.default,roomObject.goal.radiusSetting.timeout);
                     }
                 }
             }
