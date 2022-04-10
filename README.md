@@ -11,6 +11,7 @@ Here, usually easily-made ones take place.
 
 * Script for making your rooms controllable by administrators: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/AdminSlot.js
 * Basketball bot with score controlling (x2 or x3 according to distance): https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Basketball.js
+* Keep your room clean against toxic players: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Blacklist.js
 * Script for clearing the ban of a specific player: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Clearban.js
 * Script for determining if the players collide with each other during the game: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Collision.js
 * Ban players with command: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/CommandBan.js
