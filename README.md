@@ -37,6 +37,7 @@ Here, average weighted scripts take place.
 * A script for catching the bad words and banning those who used them: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Badwords.js
 * A script to wait for giveups: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/GiveUp.js
 * A script to adjust after-goal effects: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Goal_AfterEffects.js
+* A script to let the players ignore who they don't want to get messages: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Ignore.js
 * Simple login system with some constraints: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Login.js
 * Script for voting maps: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/MapVote.js
 * Script for freezing players by command, like as in the case of Mario Kart room but simple: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/PlayerFreeze.js
