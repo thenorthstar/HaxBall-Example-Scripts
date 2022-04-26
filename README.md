@@ -29,6 +29,7 @@ Here, usually easily-made ones take place.
 * A script for logging the data in your room to discord: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Webhooks.js
 * Simple betting system for HaxBall players: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/XPSystem_v1.js
 * Simple betting system with **localStorage** for HaxBall players: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/XPSystem_v2.js
+* Another (but easier) script for check whether a player is inside or outside a certain zone: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/ZoneCheck.js
 
 ### Intermediate
 Here, average weighted scripts take place.
