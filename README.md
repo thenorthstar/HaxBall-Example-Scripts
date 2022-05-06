@@ -22,8 +22,9 @@ Here, usually easily-made ones take place.
 * Script for moving players from a team to another one: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/MovePlayers.js
 * A script for adjusting player radiuses and avatars after goals: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/PlayerRadiusAvatarSetting.js
 * An overrated seeming script to change player radius by command: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RadiusSetting.js
-* A script for seeing player statistics. Has been created after a topic on GitHub: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RankSystem.js
 * Ranks with base points: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Ranks.js
+* A script for seeing player statistics. Has been created after a topic on GitHub: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RankSystem.js
+* A simple rock - paper - scissors game based on randomness: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RockPaperScissors.js
 * Slow mode script for keeping clean the chat section: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/SlowMode.js
 * A script to keep flooders away: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Spam_Mute.js
 * A script for logging the data in your room to discord: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Webhooks.js
