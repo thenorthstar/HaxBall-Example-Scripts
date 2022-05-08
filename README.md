@@ -26,7 +26,7 @@ Here, usually easily-made ones take place.
 * A script for seeing player statistics. Has been created after a topic on GitHub: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RankSystem.js
 * A simple rock - paper - scissors game based on randomness: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RockPaperScissors_v1.js
 * Rock - paper - scissors game with point check: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RockPaperScissors_v2.js
-* Players will gain (or lose) no points on draw: https://github.com/thenorthstar/HaxBall-Example-Scripts/edit/main/Beginner/RockPaperScissors_v3.js
+* Players will gain (or lose) no points on draw: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/RockPaperScissors_v3.js
 * Slow mode script for keeping clean the chat section: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/SlowMode.js
 * A script to keep flooders away: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Spam_Mute.js
 * A script for logging the data in your room to discord: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Beginner/Webhooks.js
