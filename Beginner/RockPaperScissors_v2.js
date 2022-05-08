@@ -14,7 +14,7 @@ var roomObject = {
     },
     maxPlayers: 2,
     noPlayer: true,
-    public: false,
+    public: true,
     roomName: "🪨📄✂️ Rock - Paper - Scissors Game 🪨📄✂️"
 };
 
