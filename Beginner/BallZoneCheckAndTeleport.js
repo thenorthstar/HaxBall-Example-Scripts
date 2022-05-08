@@ -1,5 +1,5 @@
 var targetPoint = { x: 0, y: 0 };
-var triggerDistance = 50;
+var triggerDistance = 1;
 var zone = { x: 300, y: -100 };
 
 var room = HBInit({ roomName: "Ball Zone Check and Teleport", noPlayer: true, public: true, maxPlayers: 12 });
