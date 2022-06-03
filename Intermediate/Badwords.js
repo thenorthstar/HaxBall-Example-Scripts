@@ -95,6 +95,7 @@ var messages = {
         }
     },
     Join: {
+        Badwords: "You were banned due to joining the room with bad name.",
         Blacklisted: "You are banned forever!",
         Muted: "You have an active mute punishment so you cannot talk before your punishment ends.",
         Welcome: "Welcome!"
@@ -106,6 +107,7 @@ var kickTypes = {
         Badwords: true
     },
     Join: {
+        Badwords: true,
         Blacklisted: true
     }
 };
@@ -162,23 +164,28 @@ room.onPlayerChat = function (player, message) {
 }
 
 room.onPlayerJoin = function (player) {
-    if (playerList[player.name] == undefined) {
-        playerList[player.name] = { name: player.name, auth: player.auth, conn: player.conn, muted: false, badwords: 0 };
+    if (isBadword(player.name) == true) {
+        room.kickPlayer(player.id, `${messages.Join.Badwords}`, kickTypes.Join.Badwords);
     }
-    var accounts = getPreviousAccounts(player);
-    if (accounts.length > 0) {
-        var blacklisted = accounts.filter(a => a.badwords >= roomObject.limits.Chat.Badwords);
-        var muted = accounts.filter(a => a.muted == true);
+    else {
+        if (playerList[player.name] == undefined) {
+            playerList[player.name] = { name: player.name, auth: player.auth, conn: player.conn, muted: false, badwords: 0 };
+        }
+        var accounts = getPreviousAccounts(player);
+        if (accounts.length > 0) {
+            var blacklisted = accounts.filter(a => a.badwords >= roomObject.limits.Chat.Badwords);
+            var muted = accounts.filter(a => a.muted == true);
 
-        if (blacklisted.length > 0) {
-            room.kickPlayer(player.id, `${messages.Join.Blacklisted}`, kickTypes.Join.Blacklisted);
+            if (blacklisted.length > 0) {
+                room.kickPlayer(player.id, `${messages.Join.Blacklisted}`, kickTypes.Join.Blacklisted);
+            }
+            else if (muted.length > 0) {
+                room.sendAnnouncement(`${messages.Join.Muted}`, player.id, colors.Join.Muted, fonts.Join.Muted, sounds.Join.Muted);
+                playerList[player.name].muted = true;
+            }
         }
-        else if (muted.length > 0) {
-            room.sendAnnouncement(`${messages.Join.Muted}`, player.id, colors.Join.Muted, fonts.Join.Muted, sounds.Join.Muted);
-            playerList[player.name].muted = true;
-        }
+
+        playerListArray.push(playerList[player.name]);
+        room.sendAnnouncement(`${messages.Join.Welcome}`, player.id, colors.Join.Welcome, fonts.Join.Welcome, sounds.Join.Welcome);
     }
-
-    playerListArray.push(playerList[player.name]);
-    room.sendAnnouncement(`${messages.Join.Welcome}`, player.id, colors.Join.Welcome, fonts.Join.Welcome, sounds.Join.Welcome);
 }
