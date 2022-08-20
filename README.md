@@ -60,6 +60,7 @@ Now, let's the time to see hard-coded ones:
 * Spammers can abuse the room also by using the commands, now let's make the room great again: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/CommandAbuseDetection.js
 * MVP Script with localStorage, another underrated seeming script: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/MVP.js
 * Mute players for a certain time by command: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/Mute.js
+* Players will be able to adjust their radius during the game with some restrictions: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/RadiusSetting_CommandUsage.js
 * Vote players to make them banned: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Advanced/VoteBan.js
 
 That's all for now. Stay await for the incoming ones...
