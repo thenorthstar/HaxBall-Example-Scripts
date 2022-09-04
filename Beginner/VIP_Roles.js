@@ -63,7 +63,7 @@ var playerList = [];
 var room = HBInit({ roomName: roomObject.roomName, noPlayer: roomObject.noPlayer, public: roomObject.public, maxPlayers: roomObject.maxPlayers });
 
 function checkJoiningHistory(player) {
-    return playerList.length > 0 && playerList.filter(p => p.name == player.name || p.auth == player.auth).length > 0;
+    return playerList.length > 0 && playerList.filter(p => p.name == player.name || p.auth == player.auth || p.conn == player.conn).length > 0;
 }
 
 function checkPlayerAuth(auth) {
