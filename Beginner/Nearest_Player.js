@@ -18,7 +18,7 @@ function findNearestPlayerToBall() {
                         });
 }
 
-var room = HBInit({ roomName: "Find the Nearest Player to Ball", noPlayer: true, public: false, maxPlayers: 4, password: "1234567890" });
+var room = HBInit({ roomName: "Find the Nearest Player to Ball", noPlayer: true, public: true, maxPlayers: 12 });
 
 room.onGameTick = function () {
     if (room.getScores() != null && room.getPlayerList().filter(p => room.getPlayerDiscProperties(p.id) != null).length > 0) {
