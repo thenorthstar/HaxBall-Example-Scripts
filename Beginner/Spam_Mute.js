@@ -1,4 +1,5 @@
 var playerList = {};
+var minMessageLength = 1;
 var bound = 3; //You can either decrease or increase this, min = 2;
 var spamBanLimit = 3;
 var spamTimer = 3000; //In milliseconds
@@ -13,7 +14,7 @@ room.onPlayerChat = function(player,message){
     if(playerList[player.name].messageDates.length == bound){
 	playerList[player.name].messageDates.shift();
     }
-    if(playerList[player.name].messageDates.length <= bound-1 && playerList[player.name].messageDates[playerList[player.name].messageDates.length-1] - playerList[player.name].messageDates[0] < spamTimer){
+    if(minMessageLength < playerList[player.name].messageDates.length && playerList[player.name].messageDates.length <= bound-1 && playerList[player.name].messageDates[playerList[player.name].messageDates.length-1] - playerList[player.name].messageDates[0] < spamTimer){
 	if(playerList[player.name].muted == false){
 	    var name = player.name;
 	    room.sendAnnouncement(`${player.name} was muted by the reason of spamming!`,null,0x00FF00,"bold",1);
