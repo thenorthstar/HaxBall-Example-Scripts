@@ -122,7 +122,7 @@ room.onPlayerChat = function(player,message){
     console.log(new Date().getHours() + ":" + new Date().getMinutes() + ":" + new Date().getSeconds() + "." + new Date().getMilliseconds() + " 💬 " + player.name + " [" + player.id + "]: " + message);
 
     if(message.startsWith("!voteban ")==true){
-	playerFound = false;
+	PlayerFound = false;
 	players = room.getPlayerList();
 	for(var i=0; i<players.length; i++){
 	    if(message === ("!voteban " + players[i].id)){
@@ -139,7 +139,7 @@ room.onPlayerChat = function(player,message){
 		    return false;
 		}
 	 	votedPlayers.add(GetPlayer(player.id).auth);
-		playerFound = true;
+		PlayerFound = true;
 		if(JSON.parse(localStorage.getItem(GetPlayer(players[i].id).auth)) != null){
 		    var v = JSON.parse(localStorage.getItem(GetPlayer(players[i].id).auth)).votes;
 		    v++;
@@ -157,7 +157,7 @@ room.onPlayerChat = function(player,message){
 		votekickCheck(players[i]);
 	    }
 	}
-	if(playerFound === false){
+	if(PlayerFound === false){
 	    players = room.getPlayerList();
 	    playersString = "";
 	    for(i=0; i<players.length; i++){
