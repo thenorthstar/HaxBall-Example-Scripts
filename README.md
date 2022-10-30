@@ -43,6 +43,7 @@ Here, average weighted scripts take place.
 
 * A script which prevents three players of the same team to be in a certain zone in the same time: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/3DefLines.js
 * A script for catching the bad words and banning those who used them: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Badwords.js
+* Finish line evaluation for some basic cases: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/FinishLine.js
 * A script to wait for giveups: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/GiveUp.js
 * A script to adjust after-goal effects: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Goal_AfterEffects.js
 * A script to let the players ignore who they don't want to get messages: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Ignore.js
