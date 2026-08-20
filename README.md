@@ -55,6 +55,7 @@ Here, average weighted scripts take place.
 * A script for teleporting red player immediately after the kick-off: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Player_Teleport_After_KickOff.js
 * A new login script with registration: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Register-Login.js
 * A script for moving yourself to the bottom or the top (logic may be hard to get the point so it's an intermediate example): https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/ReorderPlayers.js
+* A script for punishing toxic players without banning from the room: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/ShadowBan.js
 * A script for asking pauses during the game in an auto-controlled room: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/TacticalTimeout.js
 * Script for chatting with your team's members: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/TeamChat.js
 * A wide repository of team uniforms which are able to set by commands but may seem as overrated: https://github.com/thenorthstar/HaxBall-Example-Scripts/blob/main/Intermediate/Uniforms.js
